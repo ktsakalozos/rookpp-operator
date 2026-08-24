@@ -12,8 +12,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
-	"github.com/jackal/storage-operator/internal/controller"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
+	"github.com/jackal/rookpp/internal/controller"
 )
 
 var (
@@ -43,7 +43,7 @@ func main() {
 		Metrics:                metricsserver.Options{BindAddress: metricsAddr},
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
-		LeaderElectionID:       "storage-operator.jackal.io",
+		LeaderElectionID:       "rookpp.jackal.io",
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")

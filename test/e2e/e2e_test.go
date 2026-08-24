@@ -1,7 +1,7 @@
 //go:build e2e
 
 // Package e2e contains end-to-end tests that run against a real Kubernetes
-// cluster with Rook Ceph and the storage-operator installed. Run with:
+// cluster with Rook Ceph and the rookpp installed. Run with:
 //
 //	go test -tags e2e ./test/e2e/... -timeout 40m
 //
@@ -23,8 +23,8 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
-	"github.com/jackal/storage-operator/internal/rook"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
+	"github.com/jackal/rookpp/internal/rook"
 )
 
 func e2eClient(t *testing.T) client.Client {
@@ -54,7 +54,7 @@ const (
 	appNS     = "default"
 	writePod  = "e2e-writer"
 	pvcName   = "e2e-data"
-	knownData = "storage-operator-e2e-canary-42"
+	knownData = "rookpp-e2e-canary-42"
 )
 
 // TestEndToEndPromotionPreservesData drives the full lifecycle:

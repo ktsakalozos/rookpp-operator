@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Bootstraps a 3-node kind cluster, installs Rook Ceph, builds+loads the
-# storage-operator images, deploys the operator, and runs the e2e suite.
+# rookpp images, deploys the operator, and runs the e2e suite.
 #
 # Requirements: kind, kubectl, docker, helm, go.
 set -euo pipefail
 
-CLUSTER="${CLUSTER:-storage-operator-e2e}"
-IMG_MANAGER="${IMG_MANAGER:-ghcr.io/jackal/storage-operator:e2e}"
-IMG_AGENT="${IMG_AGENT:-ghcr.io/jackal/storage-operator-agent:e2e}"
+CLUSTER="${CLUSTER:-rookpp-e2e}"
+IMG_MANAGER="${IMG_MANAGER:-ghcr.io/jackal/rookpp:e2e}"
+IMG_AGENT="${IMG_AGENT:-ghcr.io/jackal/rookpp-agent:e2e}"
 ROOK_VERSION="${ROOK_VERSION:-v1.15.0}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
@@ -35,14 +35,14 @@ helm upgrade --install rook-ceph rook-release/rook-ceph \
   --version "${ROOK_VERSION}" \
   --namespace rook-ceph --create-namespace --wait
 
-echo ">> deploying storage-operator"
+echo ">> deploying rookpp"
 kubectl apply -f "${ROOT}/config/crd/storagecluster.yaml"
 kubectl apply -f "${ROOT}/config/rbac/role.yaml"
-sed -e "s#ghcr.io/jackal/storage-operator:latest#${IMG_MANAGER}#" \
-    -e "s#ghcr.io/jackal/storage-operator-agent:latest#${IMG_AGENT}#" \
+sed -e "s#ghcr.io/jackal/rookpp:latest#${IMG_MANAGER}#" \
+    -e "s#ghcr.io/jackal/rookpp-agent:latest#${IMG_AGENT}#" \
     "${ROOT}/config/manager/manager.yaml" | kubectl apply -f -
 
-kubectl -n storage-operator-system rollout status deploy/storage-operator-controller --timeout=180s
+kubectl -n rookpp-system rollout status deploy/rookpp-controller --timeout=180s
 
 echo ">> defining a block StorageClass for canary PVCs (E2E_STORAGECLASS=ceph-block)"
 # The operator creates the CephBlockPool; a consumer StorageClass is defined here.

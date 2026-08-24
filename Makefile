@@ -1,5 +1,5 @@
-IMG_MANAGER ?= ghcr.io/jackal/storage-operator:latest
-IMG_AGENT   ?= ghcr.io/jackal/storage-operator-agent:latest
+IMG_MANAGER ?= ghcr.io/jackal/rookpp:latest
+IMG_AGENT   ?= ghcr.io/jackal/rookpp-agent:latest
 
 # Location of envtest control-plane binaries (etcd, kube-apiserver, kubectl).
 # Override if setup-envtest installs them elsewhere.

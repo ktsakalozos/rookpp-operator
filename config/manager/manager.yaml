@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: storage-operator-system
+  name: rookpp-system
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: storage-operator-controller
-  namespace: storage-operator-system
+  name: rookpp-controller
+  namespace: rookpp-system
   labels:
-    app: storage-operator
+    app: rookpp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: storage-operator
+      app: rookpp
   template:
     metadata:
       labels:
-        app: storage-operator
+        app: rookpp
     spec:
-      serviceAccountName: storage-operator
+      serviceAccountName: rookpp
       containers:
         - name: manager
-          image: ghcr.io/jackal/storage-operator:latest
+          image: ghcr.io/jackal/rookpp:latest
           args:
             - --leader-elect
           ports:
@@ -51,26 +51,26 @@ spec:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: storage-operator-disk-scanner
-  namespace: storage-operator-system
+  name: rookpp-disk-scanner
+  namespace: rookpp-system
   labels:
-    app: storage-operator-disk-scanner
+    app: rookpp-disk-scanner
 spec:
   selector:
     matchLabels:
-      app: storage-operator-disk-scanner
+      app: rookpp-disk-scanner
   template:
     metadata:
       labels:
-        app: storage-operator-disk-scanner
+        app: rookpp-disk-scanner
     spec:
-      serviceAccountName: storage-operator
+      serviceAccountName: rookpp
       hostPID: true
       tolerations:
         - operator: Exists
       containers:
         - name: agent
-          image: ghcr.io/jackal/storage-operator-agent:latest
+          image: ghcr.io/jackal/rookpp-agent:latest
           securityContext:
             privileged: true
           env:

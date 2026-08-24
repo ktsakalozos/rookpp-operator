@@ -73,7 +73,7 @@ jobs:
 
       - name: Run e2e (kind + Rook + operator)
         env:
-          CLUSTER: storage-operator-e2e
+          CLUSTER: rookpp-e2e
           ROOK_VERSION: ${{ github.event.inputs.rook_version || 'v1.15.0' }}
         run: make e2e-kind
 
@@ -84,9 +84,9 @@ jobs:
           kubectl get storagecluster -o yaml
           kubectl -n rook-ceph get pods -o wide
           kubectl -n rook-ceph get cephcluster,cephblockpool -o yaml
-          kubectl -n storage-operator-system logs deploy/storage-operator-controller --tail=200
+          kubectl -n rookpp-system logs deploy/rookpp-controller --tail=200
           kubectl get events -A --sort-by=.lastTimestamp | tail -100
 
       - name: Tear down kind cluster
         if: always()
-        run: kind delete cluster --name storage-operator-e2e || true
+        run: kind delete cluster --name rookpp-e2e || true

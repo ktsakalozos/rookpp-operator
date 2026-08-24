@@ -10,9 +10,9 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
-	"github.com/jackal/storage-operator/internal/migration"
-	"github.com/jackal/storage-operator/internal/rook"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
+	"github.com/jackal/rookpp/internal/migration"
+	"github.com/jackal/rookpp/internal/rook"
 )
 
 func doReconcile(t *testing.T, ctx context.Context, r *StorageClusterReconciler, name string) {

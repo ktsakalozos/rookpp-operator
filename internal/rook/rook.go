@@ -11,7 +11,7 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
 )
 
 // GVKs for the Rook CRDs we manage.

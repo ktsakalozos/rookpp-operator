@@ -12,8 +12,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
-	"github.com/jackal/storage-operator/internal/rook"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
+	"github.com/jackal/rookpp/internal/rook"
 )
 
 // Step is a stage in the promotion process.

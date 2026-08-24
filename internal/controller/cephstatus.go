@@ -6,8 +6,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/jackal/storage-operator/internal/migration"
-	"github.com/jackal/storage-operator/internal/rook"
+	"github.com/jackal/rookpp/internal/migration"
+	"github.com/jackal/rookpp/internal/rook"
 )
 
 // cephStatusReader reads Ceph status from the Rook CephCluster status

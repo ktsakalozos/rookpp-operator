@@ -67,7 +67,7 @@ spec:
                       properties:
                         hostPath:
                           type: string
-                          default: /var/lib/storage-operator
+                          default: /var/lib/rookpp
                         sizePerOSD:
                           type: string
                           default: 50Gi

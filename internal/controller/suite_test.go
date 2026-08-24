@@ -16,7 +16,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/envtest"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
 )
 
 var (

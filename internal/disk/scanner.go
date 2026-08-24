@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
 )
 
 // AnnotationKey is the node annotation where the agent publishes detected disks.

@@ -17,7 +17,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	"github.com/jackal/storage-operator/internal/disk"
+	"github.com/jackal/rookpp/internal/disk"
 )
 
 func main() {

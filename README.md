@@ -1,4 +1,4 @@
-# storage-operator
+# rookpp
 
 A Kubernetes storage operator that drives [Rook](https://rook.io) to deliver a
 zero-config, self-adapting Ceph storage layer.

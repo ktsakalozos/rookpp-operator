@@ -15,15 +15,15 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
-	"github.com/jackal/storage-operator/internal/disk"
-	"github.com/jackal/storage-operator/internal/migration"
-	"github.com/jackal/storage-operator/internal/provisioning"
-	"github.com/jackal/storage-operator/internal/rook"
-	"github.com/jackal/storage-operator/internal/topology"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
+	"github.com/jackal/rookpp/internal/disk"
+	"github.com/jackal/rookpp/internal/migration"
+	"github.com/jackal/rookpp/internal/provisioning"
+	"github.com/jackal/rookpp/internal/rook"
+	"github.com/jackal/rookpp/internal/topology"
 )
 
-const fieldOwner = "storage-operator"
+const fieldOwner = "rookpp"
 
 // StorageClusterReconciler reconciles a StorageCluster object.
 type StorageClusterReconciler struct {

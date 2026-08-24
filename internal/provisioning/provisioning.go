@@ -10,8 +10,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	storagev1alpha1 "github.com/jackal/storage-operator/api/v1alpha1"
-	"github.com/jackal/storage-operator/internal/rook"
+	storagev1alpha1 "github.com/jackal/rookpp/api/v1alpha1"
+	"github.com/jackal/rookpp/internal/rook"
 )
 
 // Source identifies the chosen backing storage strategy.
@@ -41,7 +41,7 @@ type Manager struct {
 }
 
 // LoopbackStorageClassName is the SC created by the operator's loopback provisioner.
-const LoopbackStorageClassName = "storage-operator-loopback"
+const LoopbackStorageClassName = "rookpp-loopback"
 
 // Select applies the auto-selection order:
 //  1. raw disks, 2. usable existing StorageClass, 3. loopback fallback.

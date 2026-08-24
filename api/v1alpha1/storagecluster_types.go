@@ -33,7 +33,7 @@ const (
 // LoopbackSpec configures raw-file backed LocalPV provisioning.
 type LoopbackSpec struct {
 	// HostPath is the node directory where raw backing files are created.
-	// +kubebuilder:default="/var/lib/storage-operator"
+	// +kubebuilder:default="/var/lib/rookpp"
 	HostPath string `json:"hostPath,omitempty"`
 	// SizePerOSD is the size of each loopback backing file (e.g. "50Gi").
 	// +kubebuilder:default="50Gi"

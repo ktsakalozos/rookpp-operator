@@ -1,4 +1,4 @@
-module github.com/jackal/storage-operator
+module github.com/jackal/rookpp
 
 go 1.25
 

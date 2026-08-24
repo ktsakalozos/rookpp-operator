@@ -9,7 +9,7 @@ spec:
     mode: auto            # raw disks -> existing StorageClass -> loopback
     minDiskSize: 10Gi
     loopback:
-      hostPath: /var/lib/storage-operator
+      hostPath: /var/lib/rookpp
       sizePerOSD: 50Gi
   ha:
     autoPromote: true
