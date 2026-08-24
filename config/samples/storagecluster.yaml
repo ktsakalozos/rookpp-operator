@@ -1,0 +1,23 @@
+apiVersion: storage.jackal.io/v1alpha1
+kind: StorageCluster
+metadata:
+  name: default
+spec:
+  cephNamespace: rook-ceph
+  forceSingleNode: true
+  provisioning:
+    mode: auto            # raw disks -> existing StorageClass -> loopback
+    minDiskSize: 10Gi
+    loopback:
+      hostPath: /var/lib/storage-operator
+      sizePerOSD: 50Gi
+  ha:
+    autoPromote: true
+    minNodesForHA: 3
+    targetReplicas: 3
+    stabilizationWindowSeconds: 300
+    rebalanceThrottle: true
+  pools:
+    block: true
+    filesystem: false
+    objectStore: false

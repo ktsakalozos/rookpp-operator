@@ -1,0 +1,106 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: storageclusters.storage.jackal.io
+spec:
+  group: storage.jackal.io
+  scope: Cluster
+  names:
+    kind: StorageCluster
+    listKind: StorageClusterList
+    plural: storageclusters
+    singular: storagecluster
+    shortNames: [sc]
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      additionalPrinterColumns:
+        - name: Phase
+          type: string
+          jsonPath: .status.phase
+        - name: Nodes
+          type: integer
+          jsonPath: .status.readyNodeCount
+        - name: Replicas
+          type: integer
+          jsonPath: .status.currentReplicas
+        - name: Source
+          type: string
+          jsonPath: .status.provisioningSource
+        - name: Health
+          type: string
+          jsonPath: .status.cephHealth
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                cephNamespace:
+                  type: string
+                  default: rook-ceph
+                cephImage:
+                  type: string
+                  default: quay.io/ceph/ceph:v18.2.4
+                forceSingleNode:
+                  type: boolean
+                  default: true
+                provisioning:
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                      enum: [auto, rawDisksOnly, storageClass, loopback]
+                      default: auto
+                    storageClassName:
+                      type: string
+                    diskFilter:
+                      type: string
+                    minDiskSize:
+                      type: string
+                    loopback:
+                      type: object
+                      properties:
+                        hostPath:
+                          type: string
+                          default: /var/lib/storage-operator
+                        sizePerOSD:
+                          type: string
+                          default: 50Gi
+                ha:
+                  type: object
+                  properties:
+                    autoPromote:
+                      type: boolean
+                      default: true
+                    minNodesForHA:
+                      type: integer
+                      default: 3
+                    targetReplicas:
+                      type: integer
+                      default: 3
+                    stabilizationWindowSeconds:
+                      type: integer
+                      default: 300
+                    rebalanceThrottle:
+                      type: boolean
+                      default: true
+                pools:
+                  type: object
+                  properties:
+                    block:
+                      type: boolean
+                      default: true
+                    filesystem:
+                      type: boolean
+                      default: false
+                    objectStore:
+                      type: boolean
+                      default: false
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
